@@ -9,11 +9,12 @@ const processTransactions = (transActions) => {
 
   let txCount = {};
 
-  transActions.forEach((transaction) =>
-    txCount[transaction]
-      ? (txCount[transaction] += 1)
-      : (txCount[transaction] = 1)
-  );
+  //creates uniqueTransItems from transActions
+  const uniqueTransItems = new Set(transActions);
+  //counts the number of occurance for each item
+  uniqueTransItems.forEach((item) => {
+    txCount[item] =transActions.filter(ele => ele===item).length;
+  });
 
   txCount = sortByAmountThenName(txCount);
 
@@ -37,6 +38,6 @@ const sortByAmountThenName = (txCount) => {
   return sortedResults;
 };
 
-const validateTransactions = (transactions) => transactions === undefined ? false : true;
+const validateTransactions = (transactions) => transactions === undefined || transactions === null ? false : true;
 
 module.exports = processTransactions;
