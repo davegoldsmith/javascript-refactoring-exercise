@@ -1,8 +1,5 @@
-let txr = [];
 
 const processTransactions = (transActions) => {
-  txr = [];
-
   if (!validateTransactions(transActions)) {
     throw new Error("Undefined collection of transactions");
   }
@@ -18,7 +15,7 @@ const processTransactions = (transActions) => {
 
   txCount = sortByAmountThenName(txCount);
 
-  txr = Object.keys(txCount).map((key) => `${key} ${txCount[key]}`);
+  const txr = Object.keys(txCount).map((key) => `${key} ${txCount[key]}`);
   return txr;
 };
 
